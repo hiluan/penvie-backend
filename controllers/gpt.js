@@ -6,158 +6,123 @@ const openai = new OpenAIApi(configuration);
 
 // https://platform.openai.com/examples/default-qa
 
-const postCodex = async (req, res) => {
-  try {
-    const prompt = req.body.prompt;
-    const response = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: `${prompt}`,
-      temperature: 0.7,
-      max_tokens: 64,
-      top_p: 1,
-      frequency_penalty: 0.5,
-      presence_penalty: 0,
-      //   stop: ['"""'],
-    });
+export const postCodex = async (req, res) => {
+  const prompt = req.body.prompt;
+  const response = await openai.createCompletion({
+    model: "text-davinci-003",
+    prompt: `${prompt}`,
+    temperature: 0.7,
+    max_tokens: 64,
+    top_p: 1,
+    frequency_penalty: 0.5,
+    presence_penalty: 0,
+    //   stop: ['"""'],
+  });
 
-    res.status(200).send({
-      bot: response.data.choice[0].text,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ success: false, message: error.message });
-  }
+  res.status(200).send({
+    bot: response.data.choice[0].text,
+  });
 };
 
-const postQA = async (req, res) => {
-  try {
-    const prompt = req.body.prompt;
-    const response = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: `${prompt}`,
-      temperature: 0,
-      max_tokens: 100,
-      top_p: 1,
-      frequency_penalty: 0.0,
-      presence_penalty: 0.0,
-      stop: ["\n"],
-    });
+export const postQA = async (req, res) => {
+  const prompt = req.body.prompt;
+  const response = await openai.createCompletion({
+    model: "text-davinci-003",
+    prompt: `${prompt}`,
+    temperature: 0,
+    max_tokens: 100,
+    top_p: 1,
+    frequency_penalty: 0.0,
+    presence_penalty: 0.0,
+    stop: ["\n"],
+  });
 
-    res.status(200).send({
-      bot: response.data.choice[0].text,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ success: false, message: error.message });
-  }
+  res.status(200).send({
+    bot: response.data.choice[0].text,
+  });
 };
 
-const postGrammarCorrection = async (req, res) => {
-  try {
-    const prompt = req.body.prompt;
-    const response = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: `${prompt}`,
-      temperature: 0,
-      max_tokens: 60,
-      top_p: 1.0,
-      frequency_penalty: 0.0,
-      presence_penalty: 0.0,
-    });
-    res.status(200).send({
-      bot: response.data.choice[0].text,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ success: false, message: error.message });
-  }
+export const postGrammarCorrection = async (req, res) => {
+  const prompt = req.body.prompt;
+  const response = await openai.createCompletion({
+    model: "text-davinci-003",
+    prompt: `${prompt}`,
+    temperature: 0,
+    max_tokens: 60,
+    top_p: 1.0,
+    frequency_penalty: 0.0,
+    presence_penalty: 0.0,
+  });
+  res.status(200).send({
+    bot: response.data.choice[0].text,
+  });
 };
 
-const postTranslateProgrammingLanguages = async (req, res) => {
-  try {
-    const prompt = req.body.prompt;
-    const response = await openai.createCompletion({
-      model: "code-davinci-002",
-      prompt: `${prompt}`,
-      temperature: 0,
-      max_tokens: 54,
-      top_p: 1.0,
-      frequency_penalty: 0.0,
-      presence_penalty: 0.0,
-      stop: ["###"],
-    });
-    res.status(200).send({
-      bot: response.data.choice[0].text,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ success: false, message: error.message });
-  }
+export const postTranslateProgrammingLanguages = async (req, res) => {
+  const prompt = req.body.prompt;
+  const response = await openai.createCompletion({
+    model: "code-davinci-002",
+    prompt: `${prompt}`,
+    temperature: 0,
+    max_tokens: 54,
+    top_p: 1.0,
+    frequency_penalty: 0.0,
+    presence_penalty: 0.0,
+    stop: ["###"],
+  });
+  res.status(200).send({
+    bot: response.data.choice[0].text,
+  });
 };
 
-const postEssayOutline = async (req, res) => {
-  try {
-    const prompt = req.body.prompt;
-    const response = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: `${prompt}`,
-      temperature: 0.3,
-      max_tokens: 150,
-      top_p: 1.0,
-      frequency_penalty: 0.0,
-      presence_penalty: 0.0,
-    });
+export const postEssayOutline = async (req, res) => {
+  const prompt = req.body.prompt;
+  const response = await openai.createCompletion({
+    model: "text-davinci-003",
+    prompt: `${prompt}`,
+    temperature: 0.3,
+    max_tokens: 150,
+    top_p: 1.0,
+    frequency_penalty: 0.0,
+    presence_penalty: 0.0,
+  });
 
-    res.status(200).send({
-      bot: response.data.choice[0].text,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ success: false, message: error.message });
-  }
+  res.status(200).send({
+    bot: response.data.choice[0].text,
+  });
 };
 
-const postAdFromProductDesc = async (req, res) => {
-  try {
-    const prompt = req.body.prompt;
-    // Ad from product description
-    const response = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: `${prompt}`,
-      temperature: 0.5,
-      max_tokens: 100,
-      top_p: 1.0,
-      frequency_penalty: 0.0,
-      presence_penalty: 0.0,
-    });
-    res.status(200).send({
-      bot: response.data.choice[0].text,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ success: false, message: error.message });
-  }
+export const postAdFromProductDesc = async (req, res) => {
+  const prompt = req.body.prompt;
+  // Ad from product description
+  const response = await openai.createCompletion({
+    model: "text-davinci-003",
+    prompt: `${prompt}`,
+    temperature: 0.5,
+    max_tokens: 100,
+    top_p: 1.0,
+    frequency_penalty: 0.0,
+    presence_penalty: 0.0,
+  });
+  res.status(200).send({
+    bot: response.data.choice[0].text,
+  });
 };
 
-const postCreateStudyNotes = async (req, res) => {
-  try {
-    const prompt = req.body.prompt;
-    // Create study notes
-    const response = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: `${prompt}`,
-      temperature: 0.3,
-      max_tokens: 150,
-      top_p: 1.0,
-      frequency_penalty: 0.0,
-      presence_penalty: 0.0,
-    });
+export const postCreateStudyNotes = async (req, res) => {
+  const prompt = req.body.prompt;
+  // Create study notes
+  const response = await openai.createCompletion({
+    model: "text-davinci-003",
+    prompt: `${prompt}`,
+    temperature: 0.3,
+    max_tokens: 150,
+    top_p: 1.0,
+    frequency_penalty: 0.0,
+    presence_penalty: 0.0,
+  });
 
-    res.status(200).send({
-      bot: response.data.choice[0].text,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ success: false, message: error.message });
-  }
+  res.status(200).send({
+    bot: response.data.choice[0].text,
+  });
 };
