@@ -1,13 +1,15 @@
-const QAInteractionSchema = new mongoose.Schema(
+import mongoose from "mongoose";
+
+const GrammarCorrectionInteractionSchema = new mongoose.Schema(
   {
     userId: {
       type: mongoose.Types.ObjectId,
       ref: "User",
       required: true,
     },
-    qaId: {
+    grammarCorrectionId: {
       type: mongoose.Types.ObjectId,
-      ref: "QA",
+      ref: "GrammarCorrection",
       required: true,
     },
     prompt: {
@@ -17,6 +19,14 @@ const QAInteractionSchema = new mongoose.Schema(
     response: {
       type: String,
       required: true,
+    },
+    errorLocation: {
+      type: String,
+      required: false,
+    },
+    correction: {
+      type: String,
+      required: false,
     },
     confidence: {
       type: Number,
@@ -33,5 +43,8 @@ const QAInteractionSchema = new mongoose.Schema(
   }
 );
 
-const QAInteraction = mongoose.model("QAInteraction", QAInteractionSchema);
-export default QAInteraction;
+const GrammarCorrectionInteraction = mongoose.model(
+  "GrammarCorrectionInteraction",
+  GrammarCorrectionInteractionSchema
+);
+export default GrammarCorrectionInteraction;

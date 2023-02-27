@@ -6,12 +6,16 @@ import {
   postCreateStudyNotes,
   postGrammarCorrection,
   postAdFromProductDesc,
+  postWriteEssay,
+  postWriteEmail,
   postTranslateProgrammingLanguages,
 } from "../controllers/gpt";
 const router = express.Router();
 
 router.post("/qa", postQA);
 router.post("/codex", postCodex);
+router.post("/write-essay", postWriteEssay);
+router.post("/write-email", postWriteEmail);
 router.post("/essay-outline", postEssayOutline);
 router.post("/create-study-notes", postCreateStudyNotes);
 router.post("/grammar-correction", postGrammarCorrection);

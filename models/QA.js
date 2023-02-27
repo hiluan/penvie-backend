@@ -15,6 +15,9 @@ const QASchema = new mongoose.Schema(
       default: "pending",
       required: true,
     },
+    metadata: {
+      type: mongoose.Schema.Types.Mixed,
+    },
   },
   { timestamps: true }
 );
