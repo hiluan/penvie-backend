@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const WriteEssayInteractionSchema = new mongoose.Schema(
+const EssayChatSchema = new mongoose.Schema(
   {
     userId: {
       type: mongoose.Types.ObjectId,
@@ -9,7 +9,7 @@ const WriteEssayInteractionSchema = new mongoose.Schema(
     },
     writeEssayId: {
       type: mongoose.Types.ObjectId,
-      ref: "WriteEssay",
+      ref: "Essay",
       required: true,
       index: true, // add an index to the writeEssayId field
     },
@@ -95,8 +95,5 @@ const WriteEssayInteractionSchema = new mongoose.Schema(
   }
 );
 
-const WriteEssayInteraction = mongoose.model(
-  "WriteEssayInteraction",
-  WriteEssayInteractionSchema
-);
-export default WriteEssayInteraction;
+const EssayChat = mongoose.model("EssayChat", EssayChatSchema);
+export default EssayChat;

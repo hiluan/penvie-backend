@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
-import WriteEssayInteractionSchema from "./WriteEssayInteraction.js";
+import WriteEssayInteractionSchema from "./EssayChat.js";
 
-const WriteEssaySchema = new mongoose.Schema(
+const EssaySchema = new mongoose.Schema(
   {
     userId: {
       type: mongoose.Types.ObjectId,
@@ -53,9 +53,9 @@ const WriteEssaySchema = new mongoose.Schema(
 );
 
 // using a virtual property to get the total number of interactions for a QA object. This can be useful when displaying the number of interactions to the user.
-QASchema.virtual("totalInteractions").get(function () {
+EssaySchema.virtual("totalInteractions").get(function () {
   return this.interactions.length;
 });
 
-const WriteEssay = mongoose.model("WriteEssay", WriteEssaySchema);
-export default WriteEssay;
+const Essay = mongoose.model("Essay", EssaySchema);
+export default Essay;

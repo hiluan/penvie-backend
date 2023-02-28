@@ -12,6 +12,7 @@ const UserSchema = new mongoose.Schema(
     occupation: String,
     phoneNumber: String,
     transactions: Array,
+    defaultCategory: String,
     qa: Array,
     grammarCorrection: Array,
     writeEssay: Array,

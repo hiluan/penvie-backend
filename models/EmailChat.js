@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const WriteEmailInteractionSchema = new mongoose.Schema(
+const EmailChatSchema = new mongoose.Schema(
   {
     userId: {
       type: mongoose.Types.ObjectId,
@@ -9,7 +9,7 @@ const WriteEmailInteractionSchema = new mongoose.Schema(
     },
     writeEmailId: {
       type: mongoose.Types.ObjectId,
-      ref: "WriteEmail",
+      ref: "Email",
       required: true,
       index: true, // add an index to the writeEmailId field
     },
@@ -95,8 +95,5 @@ const WriteEmailInteractionSchema = new mongoose.Schema(
   }
 );
 
-const WriteEmailInteraction = mongoose.model(
-  "WriteEmailInteraction",
-  WriteEmailInteractionSchema
-);
-export default WriteEmailInteraction;
+const EmailChat = mongoose.model("EmailChat", EmailChatSchema);
+export default EmailChat;
