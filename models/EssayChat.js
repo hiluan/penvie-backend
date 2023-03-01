@@ -7,7 +7,7 @@ const EssayChatSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    writeEssayId: {
+    essayId: {
       type: mongoose.Types.ObjectId,
       ref: "Essay",
       required: true,

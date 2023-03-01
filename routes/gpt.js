@@ -6,22 +6,27 @@ import {
   postCreateStudyNotes,
   postGrammarCorrection,
   postAdFromProductDesc,
-  newEssay,
   postEmail,
   postTranslateProgrammingLanguages,
+  newEssay,
+  getEssays,
+  deleteEssays,
+  getEssay,
+  deleteEssay,
   newEssayChat,
+  getEssayChats,
 } from "../controllers/gpt-new";
 const router = express.Router();
 
-// routes for essays
+// routes for essays: no need update essay & essaychat
 router.post("/essays", newEssay);
 router.get("/essays", getEssays);
 router.delete("/essays", deleteEssays);
-router.get("/essays/:id", getEssay);
-router.put("/essays/:id", updateEssay);
-router.delete("/essays/:id", deleteEssay);
+router.get("/essays/:essayId", getEssay);
+router.delete("/essays/:essayId", deleteEssay);
 
 router.post("/essays/:essayId/chats", newEssayChat);
+router.get("/essays/:essayId/chats", getEssayChats);
 
 // router.post("/codex", postCodex);
 // router.post("/qa", postQA);

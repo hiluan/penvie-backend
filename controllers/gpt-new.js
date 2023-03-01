@@ -99,6 +99,7 @@ export const newEssayChat = async (req, res) => {
   // Send the new chat as the response
   res.status(200).send(savedChat);
 };
+``;
 
 export const newCodex = async (req, res) => {
   const prompt = req.body.prompt;
