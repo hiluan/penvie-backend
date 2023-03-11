@@ -19,12 +19,10 @@ function errorHandler(err, req, res, next) {
   } else {
     // Handle other errors
     console.error(err);
-    res
-      .status(500)
-      .json({
-        success: false,
-        message: "An unexpected error occurred. Please try again later.",
-      });
+    res.status(500).json({
+      success: false,
+      message: "An unexpected error occurred. Please try again later.",
+    });
   }
 }
 

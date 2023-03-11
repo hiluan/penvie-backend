@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import WriteEssayInteractionSchema from "./EssayChat.js";
+import EssayChatSchema from "./EssayChat.js";
 
 const EssaySchema = new mongoose.Schema(
   {
@@ -9,11 +9,14 @@ const EssaySchema = new mongoose.Schema(
       required: true,
     },
     totalTokens: {
-      // cost of all interactions of this conversation
+      // cost of all chats of this conversation
       type: Number,
       required: true,
     },
-    interactions: [WriteEssayInteractionSchema],
+    chats: {
+      type: Array,
+      // ref: "chatId????"
+    },
     finalWords: {
       // final number of words
       type: Number,
@@ -52,9 +55,9 @@ const EssaySchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// using a virtual property to get the total number of interactions for a QA object. This can be useful when displaying the number of interactions to the user.
+// using a virtual property to get the total number of chats for a QA object. This can be useful when displaying the number of chats to the user.
 EssaySchema.virtual("totalInteractions").get(function () {
-  return this.interactions.length;
+  return this.chats.length;
 });
 
 const Essay = mongoose.model("Essay", EssaySchema);

@@ -1,5 +1,5 @@
-import Essay from "../models/Essay";
-import EssayChat from "../models/EssayChat";
+import Essay from "../models/Essay.js";
+import EssayChat from "../models/EssayChat.js";
 
 export const getEssays = async (req, res, next) => {
   try {

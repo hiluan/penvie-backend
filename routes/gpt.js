@@ -1,22 +1,32 @@
 import express from "express";
+import axios from "axios";
+import dotenv from "dotenv";
+import { openai } from "../index.js";
 import {
-  postQA,
-  postCodex,
-  postEssayOutline,
-  postCreateStudyNotes,
-  postGrammarCorrection,
-  postAdFromProductDesc,
-  postEmail,
-  postTranslateProgrammingLanguages,
+  // postQA,
+  // postCodex,
+  // postEssayOutline,
+  // postCreateStudyNotes,
+  // postGrammarCorrection,
+  // postAdFromProductDesc,
+  // postEmail,
+  // postTranslateProgrammingLanguages,
   newEssay,
-  getEssays,
+  newEssayChat,
+  newChat,
+} from "../controllers/gpt-new.js";
+import {
+  deleteEssay,
   deleteEssays,
   getEssay,
-  deleteEssay,
-  newEssayChat,
   getEssayChats,
-} from "../controllers/gpt-new";
+  getEssays,
+} from "../controllers/gpt-essays.js";
+dotenv.config();
 const router = express.Router();
+
+// routes for chatGPT:
+router.post("/chat", newChat);
 
 // routes for essays: no need update essay & essaychat
 router.post("/essays", newEssay);

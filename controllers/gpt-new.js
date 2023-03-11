@@ -1,16 +1,21 @@
-import { Configuration, OpenAIApi } from "openai";
-import Essay from "../models/Essay";
-import EssayChat from "../models/EssayChat";
-import User from "../models/User";
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
+import Essay from "../models/Essay.js";
+import EssayChat from "../models/EssayChat.js";
+import User from "../models/User.js";
 
 // https://platform.openai.com/examples/default-qa
 
+export const newChat = async (req, res) => {
+  try {
+    const { prompt, activateChat } = req.body;
+    console.log("🚀 ~ prompt:", prompt);
+    res.status(200).json({ prompt });
+  } catch (error) {
+    console.error("error", error);
+    res.status(500).json({ error: error.message });
+  }
+};
 // When a new essay is created, the whole essay will be sent as the response with all its initial details, including the first chat. Any subsequent chats will be sent as individual chats within that essay.
-export const newEssay = async (req, res) => {
+export const newEssay = async (req, res, next) => {
   const { prompt, userId, wordLimit } = req.body;
   // Slice `prompt` to get settings and languages
   // Not done yet
@@ -99,7 +104,6 @@ export const newEssayChat = async (req, res) => {
   // Send the new chat as the response
   res.status(200).send(savedChat);
 };
-``;
 
 export const newCodex = async (req, res) => {
   const prompt = req.body.prompt;
