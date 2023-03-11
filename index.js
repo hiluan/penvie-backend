@@ -8,7 +8,8 @@ import helmet from "helmet";
 import morgan from "morgan";
 import errorHandler from "./middleware/errorHandler.js";
 import redisCache from "./middleware/redisCache.js";
-import gptRoutes from "./routes/gpt.js";
+import chatRoutes from "./routes/chat.js";
+import essayRoutes from "./routes/essay.js";
 // CONFIGURATION OPEN AI
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -25,19 +26,23 @@ app.use(morgan("common"));
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: false }));
 app.use(cors());
-app.use(redisCache);
 app.use(errorHandler); // with this we dont need `try {} catch(error) {}` in all route handlers
+// app.use(redisCache); // LATER FOR DEPLOYMENT
 
 // ROUTES
-app.use("/api/v1/gpt", gptRoutes);
+app.use("/api/v1/chatgpt", chatRoutes);
+app.use("/api/v1/davinci", essayRoutes);
+
 // app.use("/api/v1/templates", templateRoutes);
 // app.use("/api/v1/user", userRoutes);
 // app.use("/api/v1/app-status", appStatusRoutes);
 
+app.get("/api/v1/chatgpt", async (req, res) => {
+  res.send("Hello from OpenAI");
+});
 app.get("/", async (req, res) => {
   res.send("Hello from OpenAI");
 });
-
 // MONGOOSE SETUP
 const PORT = process.env.PORT || 8080;
 mongoose.set("strictQuery", true);
